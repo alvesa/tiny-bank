@@ -40,7 +40,7 @@ Content-Type: application/json
 
 ###
 
-@account_number = "69472702"
+@account_number = "64587008"
 
 # Create deposit
 POST {{base_url}}/accounts/deposit
@@ -65,21 +65,21 @@ Content-Type: application/json
 ###
 
 # Create transfer
-@from_account_number = "69472702"
-@to_account_number = "37810152"
+@from_account_number = "64587008"
+@to_account_number = "76804689"
 POST {{base_url}}/accounts/transfer
 Content-Type: application/json
 
 {
     "fromAccountNumber": {{from_account_number}},
     "toAccountNumber": {{to_account_number}},
-    "amount": 50
+    "amount": 25
 }
 
 
 ###
 
-@account_balance=37810152
+@account_balance=76804689
 
 # Get balance
 GET {{base_url}}/accounts/balance/{{account_balance}}

@@ -1,73 +1,97 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Tiny Bank Assessment 2.0
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Tecnologies
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- NodeJs v20.9
+- NestJs Framework
 
-## Description
+## Instrunctions to run
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ pnpm install
+```sh
+pnpm start
 ```
 
-## Running the app
+\* pnpm required
 
-```bash
-# development
-$ pnpm run start
+### Requests
 
-# watch mode
-$ pnpm run start:dev
+- User creation
 
-# production mode
-$ pnpm run start:prod
-```
+  - `POST http://localhost:5000`
+  - `Content-Type: application/json`
 
-## Test
+  - Body:
+    ```json
+    {
+      "name": "[NAME]",
+      "email": "[EMAIL]"
+    }
+    ```
 
-```bash
-# unit tests
-$ pnpm run test
+- User deactivation
 
-# e2e tests
-$ pnpm run test:e2e
+  - `PATCH http://localhost:5000/users/deactivate`
+  - `Content-Type: application/json`
 
-# test coverage
-$ pnpm run test:cov
-```
+  - Body:
+    ```json
+    {
+      "email": "[EMAIL]"
+    }
+    ```
 
-## Support
+- Deposit
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  - `POST http://localhost:5000/accounts/deposit`
+  - `Content-Type: application/json`
 
-## Stay in touch
+  - Body:
+    ```json
+    {
+      "accountNumber": "[ACCOUNT_NUMBER]",
+      "amount": 1000
+    }
+    ```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Withdraw
 
-## License
+  - `POST http://localhost:5000/accounts/withdraw`
+  - `Content-Type: application/json`
 
-Nest is [MIT licensed](LICENSE).
+  - Body:
+    ```json
+    {
+      "accountNumber": "[ACCOUNT_NUMBER]",
+      "amount": 500
+    }
+    ```
+
+- Transfer
+
+  - `POST http://localhost:5000/accounts/transfer`
+  - `Content-Type: application/json`
+
+  - Body:
+    ```json
+    {
+      "fromAccountNumber": "[ACCOUNT_NUMBER_FROM_WITHDRAW]",
+      "toAccountNumber": "[ACCOUNT_NUMBER_FOR_DEPOSIT]",
+      "amount": 500
+    }
+    ```
+
+- Balance
+
+  - `POST http://localhost:5000//accounts/balance/[ACCOUNT_NUMBER]`
+
+- History
+  - `POST http://localhost:5000//accounts/balance/[ACCOUNT_NUMBER]`
+
+There are few other requests could help to see user or account states, those can be found into `tiny-bank.request.http` file.
+
+### Trade-offs
+
+- I decided to use nodejs instead of .NET, because this is the tecnology I've been using last 2 years
+- For test porpouses the email field is the "unique key"
+- There are some valitions missing like request fields, etc
+- The user can include multiple accounts, actually the transfer can be done between user accounts
