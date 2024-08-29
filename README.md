@@ -12,6 +12,8 @@ npm i
 pnpm start
 ```
 
+\*`npm i` only required first time
+
 ### Tests
 
 ```sh
@@ -19,6 +21,8 @@ pnpm test
 ```
 
 ### Requests
+
+\* There is a swagger basic document that can be used to test the api at `http://localhost:5000/swagger`.
 
 - User creation
 
@@ -100,7 +104,7 @@ pnpm test
 - History
   - `POST http://localhost:5000//accounts/balance/[ACCOUNT_NUMBER]`
 
-There are few other requests could help to see user or account states, those can be found into `tiny-bank.request.http` file.
+There are few other requests could be helpful to get user or account states, those can be found into `tiny-bank.request.http` file.
 
 ### Trade-offs
 
