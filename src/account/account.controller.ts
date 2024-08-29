@@ -8,8 +8,10 @@ import {
 } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { UserService } from '../users/user.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('accounts')
+@ApiTags('tiny-bank')
 export class AccountController {
   constructor(
     private readonly accountService: AccountService,

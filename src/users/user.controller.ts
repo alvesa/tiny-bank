@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
 import { UserService } from './user.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
+@ApiTags('tiny-bank')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
