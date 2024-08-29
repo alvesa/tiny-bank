@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { IAccount } from '../account/account.repository';
-import { AccountService } from 'src/account/account.service';
+import { AccountService } from '../account/account.service';
 
 export interface IUser {
   name: string;
@@ -52,6 +52,10 @@ export class UserRepository {
     }
 
     user.accounts = [...user.accounts, account];
+  }
+
+  static cleanUp() {
+    UserRepository.users = [];
   }
 
   private deactivateAccounts(userEmail: string) {

@@ -7,7 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AccountService } from './account.service';
-import { UserService } from 'src/users/user.service';
+import { UserService } from '../users/user.service';
 
 @Controller('accounts')
 export class AccountController {

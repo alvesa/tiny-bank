@@ -24,7 +24,7 @@ export class AccountRepository {
 
   deposit(accountNumber: string, amount: number) {
     const account = AccountRepository.accounts.find(
-      (a) => a.number === accountNumber,
+      (a) => a.number === accountNumber && a.isActive,
     );
     if (!account) {
       throw new BadRequestException('Account not found');
@@ -99,5 +99,10 @@ export class AccountRepository {
 
   getAllAccounts(userEmail: string) {
     return AccountRepository.accounts.filter((a) => a.userEmail === userEmail);
+  }
+
+  static cleanUp() {
+    AccountRepository.accounts = [];
+    AccountRepository.history = [];
   }
 }

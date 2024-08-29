@@ -8,10 +8,15 @@
 ## Instrunctions to run
 
 ```sh
+npm i
 pnpm start
 ```
 
-\* pnpm required
+### Tests
+
+```sh
+pnpm test
+```
 
 ### Requests
 
@@ -39,6 +44,14 @@ pnpm start
       "email": "[EMAIL]"
     }
     ```
+
+- Get all active users
+
+  - `GET http://localhost:5000/users`
+
+- Get all user's account
+
+  - `GET http://localhost:5000/accounts/[EMAIL]`
 
 - Deposit
 
